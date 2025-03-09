@@ -1,0 +1,71 @@
+.selectContainer {
+  position: relative;
+  width: 100px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.selected {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.placeholder {
+  color: gray;
+}
+
+.arrow {
+  font-size: 12px;
+}
+
+/* Default dropdown positioning (opens below) */
+.optionsList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  list-style: none;
+  padding: 0;
+  max-height: 100px;
+  overflow-y: auto;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Opens above if not enough space below */
+.openAbove {
+  top: auto;
+  bottom: 100%;
+  margin-bottom: 5px; /* Add space when opening upwards */
+}
+
+.option {
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.option:hover {
+  background: #f0f0f0;
+}
+
+.option.active {
+  background: #ddd;
+  font-weight: bold;
+}
+
+/* Highlight option on keyboard navigation */
+.option.highlighted {
+  background: #e0e0e0;
+}

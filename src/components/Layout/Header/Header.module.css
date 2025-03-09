@@ -1,0 +1,75 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #171926;
+  color: #fff;
+}
+
+.brandContainer {
+  display: flex;
+  align-items: center;
+}
+
+/* Keep the logo size */
+.logo {
+  height: 35px;
+  width: 35px;
+}
+
+/* Keep brand styling */
+.brand {
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+/* Sidebar menu button */
+.menuButton {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .menuButton {
+    display: none;
+  }
+}
+
+/* User & Help Section */
+.userContainer {
+  display: flex;
+  align-items: center;
+}
+
+/* Help button */
+.help {
+  width: 15px;
+  height: 15px;
+  padding: 5px;
+  margin: auto 1rem;
+  border-radius: 50%;
+  background-color: #fff;
+  color: black;
+  font-weight: 600;
+}
+
+/* User avatar */
+.user {
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: #103b8e;
+}
+
+@media (min-width: 768px) {
+  .user {
+    padding: 6px;
+    width: 30px;
+    height: 30px;
+  }
+}

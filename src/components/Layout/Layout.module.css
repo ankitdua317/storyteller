@@ -1,0 +1,14 @@
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .dashboardContainer {
+    height: 100vh;
+    overflow-y: scroll;
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+  }
+}
