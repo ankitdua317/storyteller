@@ -1,3 +1,5 @@
+/* We can define common and design system classes here */
+
 .center {
   display: flex;
   justify-content: center;
