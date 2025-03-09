@@ -34,8 +34,8 @@
   visibility: visible;
 }
 
-.sidebar.open {
-  left: 0;
+.sidebarContainer.open .sidebar {
+  left: 0; /* Move sidebar into view when open */
 }
 
 /* Ensure sidebar transition is smooth when closing */
@@ -44,20 +44,21 @@
 }
 
 /* Desktop: Sidebar is always visible, overlay is hidden */
-@media (min-width: 768px) {
+@media (min-width: 820px) {
   .sidebar {
     position: static;
     flex-shrink: 0;
     min-height: 100vh;
+    left: 0; /* Ensure sidebar is visible on desktop */
   }
 
   .sidebarContainer {
     width: auto;
     position: static;
-    background-color: #171926;
+    background-color: transparent; /* Overlay not needed on desktop */
     opacity: 1;
     visibility: visible;
-    height: 100vh;
+    height: auto;
   }
 }
 

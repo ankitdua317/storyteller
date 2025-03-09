@@ -26,6 +26,8 @@
 
 /* Sidebar menu button */
 .menuButton {
+  padding-left: 0;
+  padding-right: 0.5rem;
   background: none;
   border: none;
   font-size: 24px;
@@ -33,7 +35,7 @@
   color: white;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 820px) {
   .menuButton {
     display: none;
   }
@@ -66,7 +68,7 @@
   background-color: #103b8e;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 820px) {
   .user {
     padding: 6px;
     width: 30px;

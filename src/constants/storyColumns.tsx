@@ -6,10 +6,10 @@ const STORY_COLUMNS: ColumnConfig<Story>[] = [
   {
     header: "Title",
     accessor: "title",
-    render: (item) => (
+    render: ({ title, published_date }) => (
       <>
-        <div style={{ color: "#1c62eb" }}>{item.title}</div>
-        <div>{item.published_date}</div>
+        <div style={{ color: "#1c62eb" }}>{title}</div>
+        <div>{published_date ? published_date : "(No publish date set)"}</div>
       </>
     ),
     sorting: true,
@@ -19,13 +19,10 @@ const STORY_COLUMNS: ColumnConfig<Story>[] = [
     header: "Status",
     accessor: "status",
     render: (item) => (
-      <span className={`pill pill-${item.status.toLowerCase()}`}>
-        {item.status}
-      </span>
+      <span className={`pill pill-${item.status}`}>{item.status}</span>
     ),
   },
   { header: "Live From", accessor: "live_from" },
-  { header: "Published", accessor: "published_date" },
   { header: "Ends", accessor: "ends" },
 ];
 

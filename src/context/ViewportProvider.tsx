@@ -9,11 +9,11 @@ const ViewportContext = createContext<ViewportContextType | undefined>(
 );
 
 export const ViewportProvider = ({ children }: { children: ReactNode }) => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 820);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= 820);
     };
 
     window.addEventListener("resize", handleResize);
@@ -27,4 +27,4 @@ export const ViewportProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default ViewportContext; // Export the context itself
+export default ViewportContext;

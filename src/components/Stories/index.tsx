@@ -13,12 +13,24 @@ const Stories: FC = () => {
   const { isMobile } = useViewport();
   const {
     loading,
-    currentData,
+    data,
+    pageOption,
+    currentPage,
+    totalPages,
     hasNextPage,
     hasPrevPage,
-    pageSize,
+    searchQuery,
+    status,
+    totalRecords,
+    showingFrom,
+    showingTo,
     goToNextPage,
     goToPrevPage,
+    changePageSize,
+    handleSearch,
+    handleStatusChange,
+    handleSortClick,
+    handleDelete,
   } = useStories();
 
   return (
@@ -38,11 +50,20 @@ const Stories: FC = () => {
         {/* Filters & Controls */}
         <div className="spaced-flex">
           <div className={styles.filters}>
-            <Search />
-            <Select selected={STATUS_OPTIONS[0]} options={STATUS_OPTIONS} />
-            {!isMobile && (
-              <span className={styles.pageInfo}>Showing 1 to 20 of 176</span>
-            )}
+            <Search
+              value={searchQuery}
+              onSearch={(query) => handleSearch(query)}
+            />
+            <Select
+              selected={status}
+              options={STATUS_OPTIONS}
+              onChange={(option) => handleStatusChange(option)}
+            />
+            {!isMobile && totalRecords ? (
+              <span
+                className={styles.pageInfo}
+              >{`Showing ${showingFrom} to ${showingTo} of ${totalRecords}`}</span>
+            ) : null}
           </div>
 
           {/* Show Add Button on Desktop */}
@@ -56,16 +77,20 @@ const Stories: FC = () => {
       <section aria-labelledby="stories-title">
         <Table<Story>
           ariaLabel="Stories"
-          data={currentData}
+          data={data}
           loading={loading}
+          currentPage={currentPage}
+          totalPages={totalPages}
           columns={STORY_COLOUMNS}
           hasNextPage={hasNextPage}
           hasPrevPage={hasPrevPage}
-          pageSize={pageSize}
+          pageOption={pageOption}
           goToNextPage={goToNextPage}
           goToPrevPage={goToPrevPage}
+          changePageSize={changePageSize}
           onEdit={(item) => console.log("Edit clicked", item)}
-          onDelete={(item) => console.log("Delete clicked", item)}
+          onDelete={handleDelete}
+          onSortClick={handleSortClick}
         />
       </section>
     </div>

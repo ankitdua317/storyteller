@@ -1,10 +1,15 @@
 .container {
-  height: 90dvh;
+  height: 89dvh;
   background-color: #f8f8fa;
 }
 
 .subContainer {
   padding: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.subContainer > div:first-child {
+  margin-bottom: 0.5rem;
 }
 
 .title {
@@ -12,23 +17,42 @@
 }
 
 .pageInfo {
-  flex-grow: 1;
-  text-wrap-mode: nowrap;
+  font-size: 14px;
+  font-weight: normal;
   align-self: center;
 }
 
 .addButton {
   border: none;
   border-radius: 3px;
+  border: 1px solid #1cb56c;
   background-color: #1cb56c;
   color: #fff;
   padding: 0.75rem 1.25rem;
   font-weight: 500;
   font-size: 1rem;
+  cursor: pointer;
+}
+.addButton:hover {
+  border: 1px solid #068045;
+  background-color: #068045;
 }
 
 .filters {
   display: flex;
   gap: 8px;
   flex-grow: 1;
+}
+
+.filters > div:first-child {
+  flex: 0 0 62%;
+}
+
+@media (min-width: 820px) {
+  .filters {
+    gap: 30px;
+  }
+  .filters > div:nth-child(2) {
+    flex: 0 0 20%;
+  }
 }

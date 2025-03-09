@@ -1,7 +1,6 @@
 /* Table Container */
 .tableContainer {
   flex-grow: 1;
-  max-height: 62vh; /* Prevents table from overflowing */
   width: 100%;
   overflow-x: auto;
   background-color: #ffffff;
@@ -10,11 +9,12 @@
 /* Table Styling */
 .table {
   width: 100%;
-  /* border-collapse: separate; */
+  border-collapse: separate;
   border-spacing: 0;
   background-color: #fff;
   font-family: "Inter", sans-serif;
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: scroll;
   table-layout: fixed;
 }
 
@@ -23,9 +23,10 @@
   padding: 8px 20px;
   text-align: left;
   background-color: #f8f9fa;
+  color: #171a25bf;
   border-bottom: 1px solid #ddd;
-  font-weight: bolder;
-  font-size: 13px;
+  font-weight: 600;
+  font-size: 14px;
   letter-spacing: 0.5px;
 }
 
@@ -36,7 +37,11 @@
   color: #333;
 }
 
-.table td .table tr:nth-child(even) {
+.table td:first-child > div:nth-child(2) {
+  color: #a3a3a3;
+}
+
+.table tr:nth-child(even) {
   background-color: #f8f9fa;
 }
 
@@ -162,17 +167,42 @@
   background-color: #1cb56c;
   color: #fff;
   padding: 0.5rem;
+  cursor: pointer;
+}
+
+.editButton:hover {
+  border: 1px solid #068045;
+  background-color: #068045;
 }
 
 .arrow {
   font-size: 12px;
   margin-left: 4px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.arrow:nth-of-type(2) {
+  margin: 0;
+}
+.arrow:hover {
+  color: #171a25bf;
+}
+
+.arrow.active {
+  color: #171a25bf;
 }
 
 /* Responsive Styles */
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 820px) {
+  .tableContainer {
+    max-height: 62vh;
+  }
+}
+@media screen and (max-width: 820px) {
   .table {
     table-layout: fixed;
+    overflow-x: scroll;
   }
   .table th:first-child {
     width: 200px;

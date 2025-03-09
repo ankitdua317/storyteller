@@ -4,11 +4,11 @@ import Header from "./Header";
 import styles from "./Layout.module.css";
 import { useViewport } from "../../hooks/useViewport";
 
-interface DashboardLayoutProps {
+interface LayoutProps {
   children: ReactNode;
 }
 
-const DashboardLayout = ({ children }: DashboardLayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   const { isMobile } = useViewport();
   const [isSidebarOpen, setIsSidebarOpen] = useState(!isMobile);
 
@@ -23,14 +23,11 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
       {/* Main layout structure */}
       <div className={styles.dashboardContainer}>
-        <aside className={styles.sidebarContainer}>
-          <Sidebar isOpen={isSidebarOpen} />
-        </aside>
-
+        <Sidebar isOpen={isSidebarOpen} />
         <main className={styles.mainContent}>{children}</main>
       </div>
     </div>
   );
 };
 
-export default DashboardLayout;
+export default Layout;

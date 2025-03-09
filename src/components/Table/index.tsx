@@ -1,5 +1,5 @@
-import React from "react";
-import { TableProps } from "../../models/Table";
+import React, { useState } from "react";
+import { SortBy, TableProps } from "../../models/Table";
 import Spinner from "../Spinner";
 import Pagination from "./Paginaton";
 import styles from "./Table.module.css";
@@ -10,14 +10,25 @@ const Table = <T,>({
   loading,
   columns,
   data,
-  goToPrevPage,
+  currentPage,
+  totalPages,
   hasPrevPage,
-  goToNextPage,
   hasNextPage,
+  pageOption,
+  goToPrevPage,
+  goToNextPage,
+  changePageSize,
   onEdit,
   onDelete,
+  onSortClick,
 }: TableProps<T>) => {
   const { isMobile } = useViewport();
+  const [sortBy, setSortBy] = useState<SortBy | null>(null);
+
+  const handleSortClick = (accessor: keyof T, sort: SortBy) => {
+    onSortClick!(accessor, sort);
+    setSortBy(sort);
+  };
 
   if (loading) return <Spinner />;
 
@@ -37,11 +48,32 @@ const Table = <T,>({
                 >
                   <span>
                     {header}
-                    {sorting && <span className={styles.arrow}>▲</span>}
+                    {sorting && onSortClick ? (
+                      <>
+                        <span
+                          // replace this false with sorting flag to make it active
+                          className={`${styles.arrow} ${
+                            sortBy === "inc" ? styles.active : ""
+                          }`}
+                          onClick={() => handleSortClick(accessor, "inc")}
+                        >
+                          ⬆
+                        </span>
+                        <span
+                          // replace this false with sorting flag to make it active
+                          className={`${styles.arrow} ${
+                            sortBy === "dec" ? styles.active : ""
+                          }`}
+                          onClick={() => handleSortClick(accessor, "dec")}
+                        >
+                          ⬇
+                        </span>
+                      </>
+                    ) : null}
                   </span>
                 </th>
               ))}
-              <th scope="col">Actions</th>
+              <th scope="col" style={{ width: isMobile ? "100px" : "auto" }} />
             </tr>
           </thead>
 
@@ -86,10 +118,14 @@ const Table = <T,>({
 
       {/* Pagination Component */}
       <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
         hasPrevPage={hasPrevPage}
         hasNextPage={hasNextPage}
+        pageOption={pageOption}
         goToPrevPage={goToPrevPage}
         goToNextPage={goToNextPage}
+        changePageSize={changePageSize}
       />
     </div>
   );

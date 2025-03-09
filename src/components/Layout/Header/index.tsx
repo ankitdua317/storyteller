@@ -1,7 +1,7 @@
 import styles from "./Header.module.css";
 
 interface HeaderProps {
-  toggleSidebar: () => void;
+  toggleSidebar: VoidFunction;
 }
 
 const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
@@ -16,8 +16,6 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
         >
           ☰
         </button>
-        {/* TODO Add logo */}
-        <div className={styles.logo} aria-label="Logo"></div>
         <div className={styles.brand}>Storyteller</div>
       </div>
 

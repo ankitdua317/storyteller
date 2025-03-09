@@ -1,3 +1,5 @@
+import { Option } from "../components/Input/Select";
+
 export interface ColumnConfig<T> {
   header: string;
   accessor: keyof T;
@@ -5,16 +7,22 @@ export interface ColumnConfig<T> {
   sorting?: boolean; // If the coloumn should allow sorting
 }
 
+export type SortBy = "inc" | "dec";
+
 export interface TableProps<T> {
-  ariaLabel: string;
   loading: boolean;
-  pageSize: number;
-  columns: ColumnConfig<T>[];
   data: T[];
-  goToPrevPage: VoidFunction;
+  columns: ColumnConfig<T>[];
+  pageOption: Option;
+  currentPage: number;
+  totalPages: number;
   hasPrevPage: boolean;
-  goToNextPage: VoidFunction;
   hasNextPage: boolean;
+  ariaLabel?: string;
+  goToPrevPage: VoidFunction;
+  goToNextPage: VoidFunction;
+  changePageSize: (option: Option) => void;
   onEdit: (item: T) => void;
   onDelete: (item: T) => void;
+  onSortClick?: (accessor: keyof T, sortBy: SortBy) => void;
 }

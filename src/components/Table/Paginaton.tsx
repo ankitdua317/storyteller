@@ -1,20 +1,28 @@
 import { FC } from "react";
 import styles from "./Table.module.css";
 import { PAGINATOR_ROWS_OPTIONS } from "../../constants/selectOptions";
-import Select from "../Input/Select";
+import Select, { Option } from "../Input/Select";
 
 interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
   hasPrevPage: boolean;
   hasNextPage: boolean;
-  goToPrevPage: () => void;
-  goToNextPage: () => void;
+  pageOption: Option;
+  goToPrevPage: VoidFunction;
+  goToNextPage: VoidFunction;
+  changePageSize: (option: Option) => void;
 }
 
 const Pagination: FC<PaginationProps> = ({
+  currentPage,
+  totalPages,
   hasPrevPage,
   hasNextPage,
+  pageOption,
   goToPrevPage,
   goToNextPage,
+  changePageSize,
 }) => {
   return (
     <nav
@@ -23,11 +31,18 @@ const Pagination: FC<PaginationProps> = ({
       aria-label="Pagination Navigation"
     >
       <div className={styles.pages}>
-        Page <input type="text" placeholder="1" className={styles.pageInput} />{" "}
-        of 9
+        Page{" "}
+        <input
+          type="text"
+          readOnly
+          value={currentPage}
+          className={styles.pageInput}
+        />{" "}
+        of {totalPages || 1}
         <Select
-          selected={PAGINATOR_ROWS_OPTIONS[0]}
           options={PAGINATOR_ROWS_OPTIONS}
+          selected={pageOption}
+          onChange={(option) => changePageSize(option)}
         />
       </div>
       <div className="flex">

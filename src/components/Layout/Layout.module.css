@@ -3,10 +3,10 @@
   flex-direction: column;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 820px) {
   .dashboardContainer {
-    height: 100vh;
-    overflow-y: scroll;
+    height: calc(100vh - 74px);
+    overflow-y: hidden;
     display: flex;
     align-items: stretch;
     flex-direction: row;
