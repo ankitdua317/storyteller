@@ -23,10 +23,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
       {/* Main layout structure */}
       <div className={styles.dashboardContainer}>
-        <aside className={styles.sidebarContainer}>
-          <Sidebar isOpen={isSidebarOpen} />
-        </aside>
-
+        <Sidebar isOpen={isSidebarOpen} />
         <main className={styles.mainContent}>{children}</main>
       </div>
     </div>

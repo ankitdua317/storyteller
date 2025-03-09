@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import styles from "./Select.module.css";
 
-interface Option {
-  value: string;
+export interface Option {
   label: string;
+  value: number | string;
 }
 
 interface SelectProps {
@@ -57,7 +57,6 @@ const Select = ({
 
   const handleOptionClick = (option: Option) => {
     onChange(option);
-    setIsOpen(false);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
